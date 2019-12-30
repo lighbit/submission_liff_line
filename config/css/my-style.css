@@ -8,6 +8,10 @@ table {
     word-break: break-all;
 }
 
+.table>thead>tr>th {
+    padding: 8px;
+}
+
 div {
     max-width: 100%;
     text-align: center;

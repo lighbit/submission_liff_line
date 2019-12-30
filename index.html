@@ -5,33 +5,42 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mengejar Mimpi</title>
+        <link rel="shortcut icon" type="image/x-icon" href="dream.png"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="../submission_liff_line/config/css/my-style.css">
         
-
-        <style>
-            .table>thead>tr>th {
-                padding: 60px;
-            }
-        </style>
-    </head>
+</head>
  
-<body onload="getAllMimpi();">
+<body data-gr-c-s-loaded="true" onload="getAllMimpi();">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0);"> <i class="glyphicon glyphicon-send"></i><b> MENGEJAR MIMPI</b></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav nav-pills" >
+                <li><a id="nav-list-mimpi" href="javascript:void(0);" onclick="gantiMenu('list-mimpi');">Daftar Mengejar Mimpiku</a></li>
+                <li><a id="nav-tambah-mimpi" href="javascript:void(0);" onclick="gantiMenu('tambah-mimpi');">Tambah Mimpi</a></li>
+                <li><a id="nav-fun-fact-mimpi" href="javascript:void(0);" onclick="gantiMenu('fun-fact');">Fun Fact About Dream</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+    </nav>
  
     <div class="col-xs-12 col-md-8 col-md-offset-2" ng-controller="listContactCtrl">
-        <div class="page-header">
-            <h1 align="center">
-                Mengejar Mimpi
-            </h1>
-            <ul class="nav nav-pills">
-                <li><a id="nav-list-catatan" href="javascript:void(0);" onclick="gantiMenu('list-catatan');">Daftar Mengejar Mimpiku</a></li>
-                <li><a id="nav-tambah-catatan" href="javascript:void(0);" onclick="gantiMenu('tambah-catatan');">Tambah Mimpi</a></li>
-            </ul>
- 
-        </div>
-        <div id="tambah-catatan" class="well" style="display:none;">
+        <hr>
+        <hr>
+        <div id="tambah-mimpi" class="well" style="display:none;">
             <form id="form-data">
                 <div id="nama-group" class="form-group">
                     <label>Nama:</label>
@@ -41,6 +50,10 @@
                     <label>Tanggal:</label>
                     <input type="text" class="form-control" id="tanggal" name="tanggal">
                 </div>
+                <div id="email-group" class="form-group">
+                    <label>Email:</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                  </div>
                 <div id="agenda-group" class="form-group">
                     <label>Apa Mimpimu:</label>
                     <textarea class="form-control" id="agenda" name="agenda"></textarea><br />
@@ -49,7 +62,7 @@
                 <input type="reset" value="Reset" onclick="" class="btn btn-warning btn-small" />
             </form>
         </div>
- 
+
         <div id="edit-data" class="well" style="display:none;">
             <form id="eform-data">
  
@@ -66,13 +79,17 @@
                     <label>Tanggal:</label>
                     <input type="text" class="form-control" id="etanggal" name="tanggal">
                 </div>
+                <div id="email-group" class="form-group">
+                    <label>Email:</label>
+                    <input type="text" class="form-control" id="eemail" name="email">
+                  </div>
                 <div id="agenda-group" class="form-group">
                     <label>Mimpimu:</label>
                     <textarea class="form-control" id="eagenda" name="agenda"></textarea><br />
                 </div>
                 <input type="button" value="Simpan" onclick="simpanEditData();" class="btn btn-success btn-small" />
                 <input type="reset" value="Reset" onclick="" class="btn btn-warning btn-small" />
-                <input type="button" value="Cancel" onclick="gantiMenu('list-catatan');"
+                <input type="button" value="Cancel" onclick="gantiMenu('list-mimpi');"
                     class="btn btn-warning btn-small" />
             </form>
         </div>
@@ -93,18 +110,143 @@
                     <label for="disabled">Tanggal:</label>
                     <input type="text" class="form-control" id="ltanggal" name="tanggal" disabled>
                 </div>
+                <div id="email-group" class="form-group">
+                    <label>Email:</label>
+                    <input type="text" class="form-control" id="lemail" name="email" disabled>
+                  </div>
                 <div id="agenda-group" class="form-group">
                     <label for="disabled">Mimpimu:</label>
                     <textarea class="form-control" id="lagenda" name="agenda" disabled></textarea>
                 </div>
-                <input type="button" value="Kembali" onclick="gantiMenu('list-catatan');"
+                <input type="button" value="Kembali" onclick="gantiMenu('list-mimpi');"
                     class="btn btn-warning btn-small" />
             </form>
         </div>
  
  
-        <div id="list-catatan" class="well">
-            Pilih List Mimpi untuk melihat Mimpimu yang sudah dibuat.
+        <div id="list-mimpi" class="well">
+            <div class="jumbotron">
+                <h1>HELLO!!</h1>
+                <p>Pilih List Mimpi untuk melihat Mimpimu yang sudah dibuat.</p>
+            </div>
+        </div>
+
+        <div id="fun-fact" class="well" style="display:none;">
+            <div class="container">
+                <h2>FUN FACT ABOUT DREAM</h2>  
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                    <li data-target="#myCarousel" data-slide-to="5"></li>
+                    <li data-target="#myCarousel" data-slide-to="6"></li>
+                    <li data-target="#myCarousel" data-slide-to="7"></li>
+                    <li data-target="#myCarousel" data-slide-to="8"></li>
+                    <li data-target="#myCarousel" data-slide-to="9"></li>
+                  </ol>
+              
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="../submission_liff_line/config/image/mimpi1.jpg" alt="mimpi1" style="width:100%;" class="img-rounded">
+                      <div class="carousel-caption">
+                        <h3>Kamu gak bisa membaca sesuatu maupun sadar soal waktu ketika bermimpi.</h3>
+                        <p>Di dalam mimpi, teks yang berusaha kamu baca hanya akan terlihat sebagai susunan huruf yang gak beraturan. Sama halnya dengan waktu, jarum jam yang kamu lihat akan selalu tidak konsisten. Bahkan kadang jarum jamnya gak bergerak atau hilang sama sekali. Nah, ketika kamu gak yang yakin kamu sedang bermimpi atau enggak, coba saja lakukan reality check sederhana ini.</p>
+                      </div>
+                    </div>
+              
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi2.jpg" alt="mimpi2" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>Mimpi itu bisa dikontrol.</h3>
+                          <p>Mengontrol mimpi disebut juga lucid dreaming. Lucid dream adalah kondisi dimana seseorang merasa sadar dengan mimpinya dan bisa mengontrol mimpinya tersebut. Lucid dream adalah dunia di mana kamu bisa melakukan segala hal tanpa batas; cuma imajinasi yang akan membatasimu. Bahkan, orang-orang tertentu yang punya fokus kuat bisa mempelajari keterampilan-keterampilan tertentu, misalnya belajar mengendarai mobil atau melakukan eksperimen.</p>
+                        </div>
+                    </div>
+                  
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi3.jpg" alt="mimpi3" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>Banyak penemuan yang diinspirasi dari sebuah mimpi.</h3>
+                          <p>Seperti yang disinggung barusan, mimpi bisa menginspirasi seseorang. Gak cuma hal remeh yang berguna untuk pribadi kita saja, tetapi juga penemuan-penemuan yang mengubah cara hidup manusia zaman sekarang.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi4.jpg" alt="mimpi4" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>Mimpi itu benaran bisa menjadi firasat.</h3>
+                          <p>Ada beberapa kasus di mana orang-orang benar-benar mengalami kejadian yang persis sama seperti yang pernah mereka mimpikan sebelumnya. Hal ini memang masih menjadi perdebatan di kalangan ilmuwan, mengingat bukti ilmiahnya belum jelas. Banyak yang cuma menganggapnya takhayul.
+
+                            Contoh mimpi firasat yang terkenal antara lain mimpi Abraham Lincoln tentang pembunuhan yang menimpanya, mimpi ramalan tentang tenggelamnya kapal Titanic, serta mimpi yang dialami korban insiden 9/11. Percayakah kamu?</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi5.jpg" alt="mimpi5" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>Tindihan itu gak perlu ditakutkan.</h3>
+                          <p>Pernahkah kamu mengalami ketindihan saat sedang tidur? Pengalaman ketindihan memang sesuatu yang gak menyenangkan, karena tubuh kita terasa lumpuh dan seringkali kita merasa ada “sesuatu” yang hadir di dekat kita. Hiii.
+
+                            Padahal, sleep paralysis alias kelumpuhan tidur sebenarnya hal yang normal. Ketika tidur, saraf motorik tubuh kita memang dinonaktifkan agar kita gak bergerak-gerak saat bermimpi. Tapi, kadang kita tersadar saat tubuh kita sudah dinonaktifkan. Akibat gak bisa menggerakkan tubuh, bagian otak bernama amygdala bereaksi dan timbullah halusinasi yang menakutkan.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi6.jpg" alt="mimpi6" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>REM sleep disorder memang nyata terjadi.</h3>
+                          <p>Berlawanan dengan kelumpuhan tidur, gangguan tidur REM (rapid eye movement) terjadi karena tubuh gak benar-benar “dilumpuhkan” saat seseorang mencapai fase REM dalam tidurnya. Hasilnya, kamu mengigau, bahkan memukul dan menendang dinding kamarmu.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi8.jpg" alt="mimpi8" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>Binatang peliharaanmu juga bermimpi seperti kamu.</h3>
+                          <p>Hewan peliharaan kesayangan kita juga bermimpi dalam tidurnya. Tentu mereka gak bisa menceritakan mimpinya pada kita, atau mengkonfirmasi apakah mereka bermimpi atau tidak. Tapi, coba deh perhatikan saat mereka sedang tidur, sesekali mereka akan bergerak dan <i>“mengigau”</i>.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi9.jpg" alt="mimpi9" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>Obat untuk bermimpi juga benaran ada, lho.</h3>
+                          <p>Kalo kamu pernah menonton film <i>“Inception”</i> karya sutradara Christoper Nolan yang dibintangi Leonardo DiCaprio, kamu mungkin ingat adegan saat mereka menyuntikkan racikan obat untuk memasuki dunia mimpi. Nah, ternyata obat biar kita bisa terus bermimpi itu betulan ada, lho. Namanya dimethyltryptamine. Obat ini merupakan obat halusinogen yang tergolong ilegal. Dia merupakan bentuk sintetis dari senyawa yang dihasilkan otak saat kita bermimpi.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi10.jpg" alt="mimpi10" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>Saat tidur dan bermimpi, aktivitas otakmu meningkat.</h3>
+                          <p>Kita biasa mengidentikkan tidur dengan kondisi yang damai dan tenang. Yah, itu cuma tampak luarnya saja. Nyatanya, otak kita lebih aktif saat tidur dan bermimpi dibanding saat terjaga di siang hari.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../submission_liff_line/config/image/mimpi11.jpg" alt="mimpi11" style="width:100%;" class="img-rounded">
+                        <div class="carousel-caption">
+                          <h3>Mimpi merangsang kreativitas kita.</h3>
+                          <p>Seperti yang diungkapkan pada poin di atas, mimpi gak cuma mampu menggugah penemuan dan karya seni, tapi juga sanggup “mengisi ulang” kreativitas kita. Pada kasus gangguan REM yang langka, seseorang tidak bisa bermimpi sama sekali, sehingga mereka mengalami penurunan kreativitas dan tidak bisa melakukan tugas-tugas yang membutuhkan pemecahan masalah secara kreatif.</p>
+                        </div>
+                    </div>
+              
+                  <!-- Left and right controls -->
+                  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+            </div>
+            </div>
         </div>
 
         <!--Konten LIFF v2-->
@@ -113,10 +255,10 @@
             <!-- ACTION BUTTONS -->
             <div class="buttonGroup">
                 <div class="buttonRow">
-                    <button id="openWindowButton" class="btn btn-success btn-small">Open External Window</button>
+                    <button id="openWindowButton" class="btn btn-success btn-small">Open On Window</button>
                     <button id="getProfileButton" class="btn btn-warning btn-small">Get Profile</button>
                     <button id="sendMessageButton" class="btn btn-success btn-small">Send Message</button>
-                    <button id="scanQrCodeButton" class="btn btn-warning btn-small">Open QR Code Reader</button>
+                    <button id="scanQrCodeButton" class="btn btn-warning btn-small">Open QR Code</button>
                     <button id="getAccessToken" class="btn btn-success btn-small">Get Access Token</button>
                     <button id="closeWindowButton" class="btn btn-danger btn-small">Close LIFF App</button>
                 </div>
@@ -233,5 +375,6 @@
         <script src="../submission_liff_line/config/js/liff-starter.js"></script>
         <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
         <script src="../submission_liff_line/config/js/mengejar-mimpi-config.js"></script>
+    </div>
 </body>
 </html>

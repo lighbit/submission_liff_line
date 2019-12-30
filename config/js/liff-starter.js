@@ -224,7 +224,7 @@ function registerButtonHandlers() {
           });
       }
     });
-  /**Sebelum sendMessages dijalankan, sistem akan mengecek apakah aplikasi catatan sederhana dijalankan
+  /**Sebelum sendMessages dijalankan, sistem akan mengecek apakah aplikasi Mimpi sederhana dijalankan
    * di eksternal browser atau tidak. Apabila dijalankan pada browser maka fitur sendMessages tidak dapat digunakan.
    * Namun, apabila dijalankan di LINE berdasarkan kode di atas, sendMessages yang dijalankan akan mengirim pesan
    * bertipe text dengan isi “Anda telah menggunakan fitur Send Message!”. Sehingga menampilkan notifikasi alert

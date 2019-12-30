@@ -3,15 +3,18 @@ function getAllMimpi() {
         list_data = JSON.parse(localStorage.getItem('list_data'));
         var data_app = "";
         if (list_data.length > 0) {
-            data_app = '<table class="table table-striped table-dark">';
-            data_app += '<thead>' +
-                '<th>ID</th>' +
-                '<th>Nama</th>' +
-                '<th>Tanggal</th>' +
-                '<th>Mimpimu</th>' +
-                '<th>Hapus Mimpimu :(</th>' +
-                '<th>Lihat Mimpimu</th>' +
-                '<th>Edit Mimpimu</th>' +
+            data_app += '<div class="panel panel-default">'+
+                '<div class="panel-heading"><h2>Daftar Mimpiku</h2></div>'+
+                '<table class="table">'+
+                '<thead>' +
+                    '<th>ID</th>' +
+                    '<th>Nama</th>' +
+                    '<th>Tanggal</th>' +
+                    '<th>Email</th>' +
+                    '<th>Mimpimu</th>' +
+                    '<th>Hapus Mimpimu :(</th>' +
+                    '<th>Lihat Mimpimu</th>' +
+                    '<th>Edit Mimpimu</th>' +
                 '</thead> <tbody>';
  
             for (i in list_data) {
@@ -20,10 +23,11 @@ function getAllMimpi() {
                     '<td>' + list_data[i].id_data + ' </td>' +
                     '<td>' + list_data[i].nama + ' </td>' +
                     '<td>' + list_data[i].tanggal + ' </td>' +
+                    '<td>' + list_data[i].email + ' </td>' +
                     '<td>' + list_data[i].agenda + ' </td>' +
-                    '<td><a class="btn btn-danger btn-small" href="javascript:void(0)" onclick="hapusData(\'' + list_data[i].id_data + '\')">Hapus</a></td>' +
-                    '<td><a class="btn btn-danger btn-small" href="javascript:void(0)" onclick="lihatData(\'' + list_data[i].id_data + '\')">Lihat</a></td>' +
-                    '<td><a class="btn btn-warning btn-small" href="javascript:void(0)" onclick="editData(\'' + list_data[i].id_data + '\')">Edit</a></td>';
+                    '<td><a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="hapusData(\'' + list_data[i].id_data + '\')">Hapus</a></td>' +
+                    '<td><a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="lihatData(\'' + list_data[i].id_data + '\')">Lihat</a></td>' +
+                    '<td><a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="editData(\'' + list_data[i].id_data + '\')">Edit</a></td>';
                 data_app += '</tr>';
             }
  
@@ -31,15 +35,26 @@ function getAllMimpi() {
  
         }
         else {
-            data_app = "Catatan Kosong :( ayo mengejar mimpi dengan buat catatan";
+            data_app += 
+
+            '<div class="jumbotron">' +
+                '<h1>ADUH!</h1>' +
+                '<p>mimpi Kosong :( ayo mengejar mimpi dengan buat mimpi. <br><b>klik Tambah Mimpi diatas</b></p>' +
+            '</div>';
         }
  
  
-        $('#list-catatan').html(data_app);
-        $('#list-catatan').hide();
-        $('#list-catatan').fadeIn(100);
+        $('#list-mimpi').html(data_app);
+        $('#list-mimpi').hide();
+        $('#list-mimpi').fadeIn(100);
     }
 }
+
+// function callMenus(){
+//     document.getElementById("callM").click(function(){
+//         gantiMenu('tambah-mimpi');
+//     })
+// }
  
 function editData(id) {
  
@@ -51,6 +66,7 @@ function editData(id) {
                 $("#eid_data").val(list_data[i].id_data);
                 $("#enama").val(list_data[i].nama);
                 $("#etanggal").val(list_data[i].tanggal);
+                $("#eemail").val(list_data[i].email);
                 $("#eagenda").val(list_data[i].agenda);
                 list_data.splice(idx_data, 1);
             }
@@ -71,6 +87,7 @@ function lihatData(id) {
                 $("#lid_data").val(list_data[i].id_data);
                 $("#lnama").val(list_data[i].nama);
                 $("#ltanggal").val(list_data[i].tanggal);
+                $("#lemail").val(list_data[i].email);
                 $("#lagenda").val(list_data[i].agenda);
                 list_data.splice(idx_data, 1);
             }
@@ -89,16 +106,17 @@ function simpanData() {
     } else {
         liff.sendMessages([{
             'type': 'text',
-            'text': "Catatan baru berhasil disimpan"
+            'text': "mimpi baru berhasil disimpan yeay!"
         }]).then(function() {
-            alert('Catatan Tersimpan');
+            alert('mimpi Tersimpan');
         }).catch(function(error) {
-            alert('Aduh kok error ya...');
+            alert('Ada kesalahan nih...');
         });
     }
  
     nama = $('#nama').val();
     tanggal = $('#tanggal').val();
+    email = $('#email').val();
     agenda = $('#agenda').val();
  
     if (localStorage.list_data && localStorage.id_data) {
@@ -111,11 +129,11 @@ function simpanData() {
     }
  
     id_data++;
-    list_data.push({ 'id_data': id_data, 'nama': nama, 'tanggal': tanggal, 'agenda': agenda });
+    list_data.push({ 'id_data': id_data, 'nama': nama, 'tanggal': tanggal, 'email': email, 'agenda': agenda });
     localStorage.setItem('list_data', JSON.stringify(list_data));
     localStorage.setItem('id_data', id_data);
     document.getElementById('form-data').reset();
-    gantiMenu('list-catatan');
+    gantiMenu('list-mimpi');
  
     return false;
 }
@@ -127,11 +145,11 @@ function simpanEditData() {
     } else {
         liff.sendMessages([{
             'type': 'text',
-            'text': "Catatan yang diedit sudah tersimpan"
+            'text': "Editanmu Sudah di save"
         }]).then(function() {
-            alert('Catatan tersimpan');
+            alert('mimpi tersimpan');
         }).catch(function(error) {
-            alert('Aduh kok error ya...');
+            alert('Ada kesalahan nih...');
         });
     }
  
@@ -140,10 +158,10 @@ function simpanEditData() {
     tanggal = $('#etanggal').val();
     agenda = $('#eagenda').val();
  
-    list_data.push({ 'id_data': id_data, 'nama': nama, 'tanggal': tanggal, 'agenda': agenda });
+    list_data.push({ 'id_data': id_data, 'nama': nama, 'tanggal': tanggal, 'email': email, 'agenda': agenda });
     localStorage.setItem('list_data', JSON.stringify(list_data));
     document.getElementById('eform-data').reset();
-    gantiMenu('list-catatan');
+    gantiMenu('list-mimpi');
  
     return false;
 }
@@ -155,11 +173,11 @@ function hapusData(id) {
     } else {
         liff.sendMessages([{
             'type': 'text',
-            'text': "Catatan sudah terhapus"
+            'text': "Mimpi sudah terhapus :("
         }]).then(function() {
-            alert('Catatan sudah dihapus');
+            alert('Mimpi sudah dihapus :(');
         }).catch(function(error) {
-            alert('Aduh kok nggak bisa');
+            alert('Ada kesalahamn');
         });
     }
  
@@ -181,27 +199,36 @@ function hapusData(id) {
  
  
 function gantiMenu(menu) {
-    if (menu == "list-catatan") {
+    if (menu == "list-mimpi") {
         getAllMimpi();
-        $('#tambah-catatan').hide();
-        $('#list-catatan').fadeIn();
+        $('#tambah-mimpi').hide();
+        $('#list-mimpi').fadeIn();
         $('#edit-data').hide();
         $('#lihat-data').hide();
+        $('#fun-fact').hide();
     }
-    else if (menu == "tambah-catatan") {
-        $('#tambah-catatan').fadeIn();
-        $('#list-catatan').hide();
+    else if (menu == "tambah-mimpi") {
+        $('#tambah-mimpi').fadeIn();
+        $('#list-mimpi').hide();
         $('#edit-data').hide();
         $('#lihat-data').hide();
     } else if (menu == "edit-data") {
         $('#edit-data').fadeIn();
-        $('#tambah-catatan').hide();
-        $('#list-catatan').hide();
+        $('#tambah-mimpi').hide();
+        $('#list-mimpi').hide();
         $('#lihat-data').hide();
+        $('#fun-fact').hide();
     } else if (menu == "lihat-data") {
         $('#lihat-data').fadeIn();
         $('#edit-data').hide();
-        $('#tambah-catatan').hide();
-        $('#list-catatan').hide();
+        $('#tambah-mimpi').hide();
+        $('#list-mimpi').hide();
+        $('#fun-fact').hide();
+    } else if (menu == "fun-fact") {
+        $('#lihat-data').hide();
+        $('#edit-data').hide();
+        $('#tambah-mimpi').hide();
+        $('#list-mimpi').hide();
+        $('#fun-fact').fadeIn();
     }
 }
