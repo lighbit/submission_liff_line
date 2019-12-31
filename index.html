@@ -16,7 +16,7 @@
 <body data-gr-c-s-loaded="true" onload="getAllMimpi();">
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -29,9 +29,10 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav nav-pills" >
-                <li><a id="nav-list-mimpi" href="javascript:void(0);" onclick="gantiMenu('list-mimpi');">Daftar Mengejar Mimpiku</a></li>
+                <li><a id="nav-list-mimpi" href="javascript:void(0);" onclick="gantiMenu('list-mimpi');">Daftar Mimpi-Mimpimu</a></li>
                 <li><a id="nav-tambah-mimpi" href="javascript:void(0);" onclick="gantiMenu('tambah-mimpi');">Tambah Mimpi</a></li>
                 <li><a id="nav-fun-fact-mimpi" href="javascript:void(0);" onclick="gantiMenu('fun-fact');">Fun Fact About Dream</a></li>
+                <li><a id="nav-fun-about" href="javascript:void(0);" onclick="gantiMenu('about');">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -50,10 +51,14 @@
                     <label>Tanggal:</label>
                     <input type="text" class="form-control" id="tanggal" name="tanggal">
                 </div>
-                <div id="email-group" class="form-group">
-                    <label>Email:</label>
-                    <input type="text" class="form-control" id="email" name="email">
-                  </div>
+                <div id="jam-group" class="form-group">
+                    <label>Jam:</label>
+                    <input type="text" class="form-control" id="jam" name="jam">
+                </div>
+                <div id="jam-group" class="form-group">
+                    <label>posisi Tidur:</label>
+                    <input type="text" class="form-control" id="posisi" name="posisi">
+                </div>
                 <div id="agenda-group" class="form-group">
                     <label>Apa Mimpimu:</label>
                     <textarea class="form-control" id="agenda" name="agenda"></textarea><br />
@@ -61,6 +66,21 @@
                 <input type="button" value="Simpan" onclick="simpanData();" class="btn btn-success btn-small" />
                 <input type="reset" value="Reset" onclick="" class="btn btn-warning btn-small" />
             </form>
+        </div>
+
+        <div id="about" class="well" style="display:none;">
+            <!-- First Container -->
+            <div class="container-fluid bg-1 text-center">
+                <div class="well well-sm">
+                    <h3 class="margin"><samp>Siapa Aku?</samp></h3>
+                </div>
+                <img src="../submission_liff_line/config/image/zulka.png" class="img-responsive img-circle margin" style="display:inline" alt="zulka" width="200" height="200">
+                <hr>
+                <div class="well well-sm">
+                    <samp><h3>Aku suka pada mereka yang masuk menemu malam. Malam yang berwangi mimpi, terlucut debu.</h3></samp>
+                <h4 align="right"><i><samp>Zulkarnaen</samp></i></h4>
+            </div>
+            </div>
         </div>
 
         <div id="edit-data" class="well" style="display:none;">
@@ -79,10 +99,14 @@
                     <label>Tanggal:</label>
                     <input type="text" class="form-control" id="etanggal" name="tanggal">
                 </div>
-                <div id="email-group" class="form-group">
-                    <label>Email:</label>
-                    <input type="text" class="form-control" id="eemail" name="email">
-                  </div>
+                <div id="jam-group" class="form-group">
+                    <label>Jam:</label>
+                    <input type="text" class="form-control" id="ejam" name="jam">
+                </div>
+                <div id="jam-group" class="form-group">
+                    <label>posisi Tidur:</label>
+                    <input type="text" class="form-control" id="eposisi" name="posisi">
+                </div>
                 <div id="agenda-group" class="form-group">
                     <label>Mimpimu:</label>
                     <textarea class="form-control" id="eagenda" name="agenda"></textarea><br />
@@ -110,16 +134,19 @@
                     <label for="disabled">Tanggal:</label>
                     <input type="text" class="form-control" id="ltanggal" name="tanggal" disabled>
                 </div>
-                <div id="email-group" class="form-group">
-                    <label>Email:</label>
-                    <input type="text" class="form-control" id="lemail" name="email" disabled>
-                  </div>
+                <div id="jam-group" class="form-group">
+                    <label>Jam:</label>
+                    <input type="text" class="form-control" id="ljam" name="jam" disabled>
+                </div>
+                <div id="jam-group" class="form-group">
+                    <label>posisi Tidur:</label>
+                    <input type="text" class="form-control" id="lposisi" name="posisi" disabled>
+                </div>
                 <div id="agenda-group" class="form-group">
                     <label for="disabled">Mimpimu:</label>
                     <textarea class="form-control" id="lagenda" name="agenda" disabled></textarea>
                 </div>
-                <input type="button" value="Kembali" onclick="gantiMenu('list-mimpi');"
-                    class="btn btn-warning btn-small" />
+                <input type="button" value="Kembali" onclick="gantiMenu('list-mimpi');" class="btn btn-warning btn-small" />
             </form>
         </div>
  
@@ -127,7 +154,7 @@
         <div id="list-mimpi" class="well">
             <div class="jumbotron">
                 <h1>HELLO!!</h1>
-                <p>Pilih List Mimpi untuk melihat Mimpimu yang sudah dibuat.</p>
+                <p>Pilih List Mimpi untuk melihat Mimpimu yang sudah terjadi.</p>
             </div>
         </div>
 
